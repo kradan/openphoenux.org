@@ -1,0 +1,176 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use subs qw(debug include_file parse_file link hyperlink);
+my ($debug, %links);
+my $date = qx/date/;
+my $include_dir = 'include/'; # preserve trailing /
+unless (@ARGV) { print "No target specified, assuming 'index'.\n"; push @ARGV, 'index'; }
+map { (/^-d$/) ? $debug++ : parse_file $_ } @ARGV;
+exit 0;
+
+sub debug { print STDERR @_ if ($debug) }
+sub link {
+    my ($name, $target) = @_;
+#    $target || die "link: insufficient arguments ('@_').";
+    if ($target) {
+      debug "link: $name -> $target\n";
+      $links{$name} = $target;
+    } else {
+	if ($links{$name}) { return $links{$name}  }
+	else { warn "unknown link: $name\n"; }
+    }
+}
+sub hyperlink {
+    my ($name, $url, $target) = @_;
+    unless ($name) { die "make_link: no argument given." }
+    $url||= link($name);
+    $target = ($url =~ /^http/) ? ' target="_blank"' : '';
+    $name||= $url;
+    return "<a href=\"$url\"$target title=\"$name\">$name</a>";
+}
+sub create_thumbnail {
+    my $image = shift || die "create_thumbnail: missing parameter.";
+    unless (-f "images/$image") {
+	warn "create_thumbnail: 'images/$image' not found.\n";
+	return;
+    }
+    return if (-f "images/thumbs/$image");
+    print "resizing $image ..";
+    system "convert images/$image -resize 150 images/thumbs/$image";
+    print " done.\n";
+}
+sub include_file {
+    my $file = shift || die "include_file: no argument given.";
+    my $path = "$include_dir$file";
+    debug "include_file $path\n";    
+    unless (-f $path) {
+	warn "include_file: could not find '$path'.\n"; return;
+    }
+    unless (open BUF, '<', $path) {
+	warn "include_file: troubles reading '$path': $!.\n"; return;
+    }
+    my (@buffer, $list);
+    foreach (<BUF>) {
+	debug "$file: $_";
+	# define link urls for later use
+	if (/^\.a ([^:]+): (.+)$/) { link($1, $2); next; }
+	# unordered lists
+	if (/^(\*|\.li) (.+)$/) { # list element
+	    my $ul = ($list) ? '' : "<ul>\n"; # we want to add list containers automatically
+            s/^(\*|\.li) (.+)$/$ul<li>$2<\/li>/;
+	    $list++;
+	} elsif ($list) { push @buffer, "</ul>"; $list = 0; }
+	# vanilla paragraph
+	s/^\.p (.+)$/<p>\n$1\n<\/p>/;
+	# paragraph with css class and/or id
+	if (/^\.p(\.([^#]+))?(#([^\s]+))? (.+)$/) {
+	    my $class = ($1) ? " class='$2'" : '';
+	    my $id = ($3) ? " id='$4'" : '';
+	    my $p = $5;
+	    s/^\.p.+$/<p$class$id>\n$p\n<\/p>/;
+	}
+	# just an ordinary headline
+	s/^\.h(\d) (.+)/<h$1>$2<\/h$1>/;
+	# anonymous note
+	s/^\.note (.+)$/<div class="note">$1<\/div>/;
+	# hyperlink evaluation
+	while (/\[([^\]]+)->([^\]]+)\]/) { # link [->]
+	    my $link = &hyperlink($1,$2); 
+	    s/\[([^\]]+)->([^\]]+)\]/$link/;
+	}
+	while (/\s_([^_]+)_(\s*)/) { #link __
+	    my $link = &hyperlink($1);
+	    s/\s_([^_]+)_(\s*)/ $link$2/;
+	}
+	# static galleries floating left, right or centered
+	if (/^\.gallery(<|>|=) (.+)$/) {
+	    my ($pos, $images, $str) = ($1, $2, '');
+	    my $align = (($pos eq '<') ? 'left' : (($pos eq '>') ? 'right' : 'center'));
+	    foreach my $img (split ' ', $images) { # TODO avoid to parse css statements
+		create_thumbnail($img);
+		$str .= "  <a class=\"img-right\" href=\"images/$img\" title=\"click to enlarge\" target=\"_blank\"><img src=\"images/thumbs/$img\" alt=\"$img\" /></a>\n";
+	    }
+	    my $gallery = " <div class=\"gallery-$align\">\n$str </div>";
+	    s/\.gallery.+$/$gallery/;
+	}
+	# linking images with description, left/right/centered
+        if (/\.img(<|>|=)? (\S+)\s?(.*)$/) {
+	    my ($pos, $img, $info, $class, $target) = ($1, $2, $3, 'img', ' target="_blank"');
+	    # check path, proceed after warning to deliver clean html and to give the user a chance to correct it
+	    unless (-f "images/$img") { warn "$file: image 'images/$img' does not exist.\n"; }
+            else { create_thumbnail($img); }
+	    # define css class
+	    unless ($pos) { $class .= '-right' }
+	    elsif ($pos eq '=') { $class .= '-center' }
+	    elsif ($pos eq '<') { $class .= '-left' }
+	    elsif ($pos eq '>') { $class .= '-right' }
+	    # use thumbnail unless the image is centered
+	    my $src = ($pos && $pos eq '=') ? "images/$img" : "images/thumbs/$img";
+	    # configure link and title
+	    my ($title, $url) = split " -> ", $info;
+	    $title||= 'click to enlarge';
+	    $url||= $url = "images/$img";
+	    $target = '' unless ($url =~ /^http/);
+	    s/^\.img.+$/<a class="$class" href="$url"$target title="$title"><img src="$src" alt="$title" \/><\/a>\n/;
+	    # preserve old easy replacement without thumbnail, alignment and target (in case we mess up)
+	    # s/^\.img (\S+)\s?(.*)$/<a class="img" href="images\/$1" title="click to enlarge"><img src="images\/$1" alt="$2" \/><\/a>\n/;
+	    # s/^\.img (\S+)/<a class="img" href="$3" title="$2"><img src="images\/$1" alt="$2" \/><\/a>\n/;
+        }
+	# insert footer date line
+	s/\$date/$date/;
+	push @buffer, $_;
+    }
+    debug "\n$file * EOF\n";
+    close BUF;
+    return join "", @buffer;
+}
+sub parse_file {
+  my $name = shift || die "parse_file: no argument given.";
+  debug "parse_file: $name\n";
+  my $source = "$include_dir$name.inc";
+  my $target = "$name.html";
+  unless (open INC, '<', $source) {
+    warn "parse_file: Could not open '$source': $!."; return;
+  }
+  unless (open HTML, '>', $target) {
+      warn "parse_file: Could not write '$target': $!."; return;
+  }
+  print "Generating $target from $source. " unless ($debug);
+ foreach (<INC>) {
+  debug "$source: $_";
+  if (/^<!--([\s#]+)include:(.+) -->/) {
+    print HTML include_file("$2.inc") unless ($1 =~ /#/);
+  }
+  elsif (/^<!--([\s#]+)(top|left):(\S+)\s?(.*) -->$/) {
+    my $position = $2;
+    my $target = $3;
+    my $file = lc("$target.inc");
+    my $tag = $4||$file;
+    next if ($1 =~ /#/);
+
+    my @buffer = include_file($file) || next;
+    print HTML <<"HTML"
+ <div id="$target" class="tab $position">
+  <a href="#$target" class="menu $position">$tag</a>
+  <div class="content hidden">
+@buffer
+  <div class="close"><a href="#">close</a></div>
+  </div>
+ </div>
+HTML
+;
+  } elsif (/<!-- ([^\/].+) -->/) {
+      my $file = lc("$1.inc");
+      warn "deprecation warning: Use of '<!-- $1 -->' instead of '<!-- include:".lc($1)." -->' in $source.\n";
+      print HTML include_file($file);
+  } else {
+    print HTML;
+  }
+ }
+ debug "\n$source * EOF\n";
+ close INC;
+ close HTML;
+  print "Done.\n" unless ($debug);
+  1;
+}

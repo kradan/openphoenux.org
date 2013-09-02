@@ -1,0 +1,24 @@
+<div id="nav" class="wide bar">
+ <a id="rss" href="" target="_blank">rss</a>
+ <a id="ml" href="http://lists.openphoenux.org/mailman/listinfo/community" target="_blank">mailing list</a>
+ <a id="news" href="http://projects.goldelico.com/p/gta04-main/page/News/" target="_blank">news</a>
+ <a id="orig" href="http://openphoenux.org" target="_blank">original website</a>
+ - design by [kardan->mailto:kardan-NOSPAM-riseup.net?subject=replace_'-NOSPAM-'_by_@]
+ <address></address>
+ <p id="date"><!-- hhmts start -->Last modified: $date <!-- hhmts end --></p>
+</div>
+
+<div id="top" class="wide">
+<div id="banner">
+ <div class="left">
+  <h1>Open Phoenux <span>[o.pen fi.nuks]</span></h1>
+  <h2>Free your phone by running Linux!</h2>
+ </div>
+<!-- <a href="."><img src="images/openphoenux.png" width="100" height="100" alt="phoenux logo" /></a>-->
+ <a href="."><img src="images/openphoenux_logo.png" width="100" alt="openphoenux.org" /></a>
+ <div class="right">
+  <p>Are you ready for the<br/> next generation mobile phone?</p>
+  <p>no backdoors - no hardware locks<br/>full control by free software.</p>
+ </div>
+</div>
+</div>

@@ -1,0 +1,19 @@
+FEATURES
+* make parse.pl tolerant to .inc and .html suffix
+* add way to comment out markupped entries
+* add option to disable thumbnails
+
+DESIGN
+* screen.css: hide the main page (or move it down) if any section is shown (looks suboptimal for short articles)
+* in epiphany hovered links are shown over bottom bar
+
+CONTENT
+* STUBS: os.inc production.inc
+* create leaflet / print.css
+* implement project.conf to specify different image and include paths
+* create rss
+* add #news
+* add stories about #production sites and #case developments
+* improve #about (add story about goldendelicous and others)
+* write #software
+* make #history :)

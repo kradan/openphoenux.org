@@ -1,0 +1,17 @@
+.gallery> case_3Dprint.png case_white_parts.png case_white_assembled.png  gta04_white.png case_moko_redblack.png case_transparent.png case_PCB_result.png GTA04_wooden_case1.png GTA04_wooden_case2.png  GTA04_wooden_case3.png GTA04_wooden_case.png Letux3704.png Letux7004_tablet.png 
+
+.note Any design contributions are VERY welcome. Especially we're looking for industrial designers / 3D modellers!
+
+.h2 Case Designs
+
+.p We want to make you familiar with the amazing potential of crowd design showing the value of distributed creativity empowered by free CAD tools and PCB software. See [Case Design->http://projects.goldelico.com/p/gta04-main/page/CaseDesign]
+
+.img= case_CAD.png 
+.img= case_PCB.png
+
+.p Have a look at the following as a puzzle and try to answer the question how to fit all your wished features in a small box of 80 cm<sup>2</sup>.
+
+.img= 2010_board_parts_1.png
+.img= 2010_board_parts_2.png
+
+.p You are free townload the designs by [Nikolaus Schaller->http://download.goldelico.com/gta04/CAD] (goldendelicious) and [Lukas M&auml;rdian->http://slyon.de/CAD] and create new sketches to share with the [community->mailing list].
