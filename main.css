@@ -1,0 +1,50 @@
+body { margin:0px; }
+div.note { float: right; display:block; position:relative; width:180px; top:5px; left:5px; padding:15px; margin: 10px 10px 25px 25px;
+        background-color:yellow; font-size: 10pt; text-align:center; }
+.wide { width:100%; }
+.bar { position:fixed; background-color: #ccf; height:2em; font-size:0.8em; }
+.bar a { top:0px; color:black; text-decoration:none; }
+#banner { height:120px; width:98%; overflow:hidden; }
+#banner a { float:left; display:block; margin:10px 100px 10px 0px; }
+#banner div.left { float:left; width:400px; }
+#banner div.right { float:left; -width:0px; font-size:10pt; text-align:center; }
+#banner h1 { font-size:18pt; margin:15px 0px 0px 15px; }
+#banner h2 { font-size:12pt; margin-left:30px; }
+h1 span { font-size:11px; }
+.tab p { margin:5px; padding:0px; }
+.menu#top { margin-left:150px; }
+.menu#left { margin-top:31px; }
+a.menu.top { display:block; float:left;
+             width:10%; height:20px; padding:5px; margin-right:-1px;
+             border: 1px solid #ccc; font-size:80%; text-align:center; text-decoration:none; color:blue; }
+a.menu.left { display:block; position:relative; width:120px; 
+         padding:5px; margin-left:19px; margin-bottom:-1px; 
+         border: 1px solid #ccc; text-decoration:none; font-size:10pt; }
+a.menu:hover, a.menu:target { background-color:#cce; border-bottom: none; }
+.hidden { display:none; }
+.content { position:absolute; width:75%; top:150px; left:150px;
+           margin-right:50px; padding:30px;
+           background-color:white; border: 1px solid #ccc; }
+.content a { display:inline; color:red; text-decoration:underline; }
+.content p { margin-top:25px;  }
+.content li { margin-left:50px; }
+.content cite { margin:25px; }
+.gallery-left { float:left; width:100px; margin: 0p 50px 0px 25px; }
+.gallery-right { float:right; width:100px; margin: 0px 0px 0px 75px; }
+.gallery-center { margin: 25px; border:1px solid #ccc; }
+.gallery img { width:100px; margin-bottom:15px; }
+.img-left img { display:block; float:left; width:150px; margin: 25px 50px 25px 25px; }
+.img-center img { display:block; max-width:70%; margin: 25px; }
+.img-right img { display:block; float:right; width:100px; margin: 0px 25px 25px 50px; }
+.menu #images img { float:right; width:100px; margin: 0px 0px 15px 0px; }
+.content .close { clear:both; float:right; font-size:12px; margin-top:50px; }
+.tab:target .content { display:block; }
+#images { width:100px; margin-top:20px; margin-left: 50px; }
+#images img { width:100px; display:block; margin-bottom:10px;  }
+.question { clear:both; }
+.box { margin:5px; white-space: pre; font-size:11px; }
+#nav { position:fixed; bottom:0px; height:25px; margin:0px; padding:0px; z-index:1; text-align:center; }
+#nav p, address { margin:5px; padding:0px; }
+#nav #links { float:left; }
+#nav #date { float:right; }
+/* thanks to http://css-tricks.com/examples/CSSTabs */

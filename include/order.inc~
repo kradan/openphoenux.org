@@ -1,0 +1,34 @@
+.h2 Awesome. Get me a GTA04!
+
+.gallery> GTA04_parts.JPG case_white_parts.png case_white_assembled.png case_PCB_result.png GTA04_wooden_case2.png case_transparent.png keyboard_prototype.png Letux3704_inside.png Letux7004_board.png
+
+.img= gta04_features.png Features -> #hardware
+.img= GTA04_board.jpeg 
+
+.p We currently have no stock since we need to collect at least 200 orders so that we can produce in big enough batches. Otherwise the component [cost->#price] would be even higher. Please use the [wishlist formular->http://slyon.de/gta04/index.old.php] at the delicious webshop to indicate that you are interested.
+
+.p If you want to stay informed or discuss the latest announcements, please subscribe to our _Mailinglist_.
+
+.h2 But I want to have one!
+
+.img> GTA04A4_group_tour.jpg Versions -> http://projects.goldelico.com/p/gta04-main/page/Versions/
+
+.p Ok, for developers we can offer some last units of the [GTA04A4->http://projects.goldelico.com/p/gta04-main/page/Versions/] ([group tour 1->http://blog.slyon.de/2012/11/02/gta04-production-is-processing/comment-page-1/]). They are not perfect, [ask us->Mailinglist] for a detailed list.
+
+.p We offer three different product options:
+* GTA04 motherboard for DIY upgrades.
+* Letux 2804: preinstalled in a refurbished Openmoko GTA02 case.
+* GTA04 Custom: contact us for a customized variant.
+
+.img= gta02-upgrade.gif
+.note This is not a complete phone. You need to get a new or used [Neo 1973->https://shop.goldelico.com/wiki.php?page=1973&referer=] or [Neo Freerunner->https://shop.goldelico.com/wiki.php?page=Neo%20Freerunner&referer=] unless you purchase one of the rare complete [Letux 2804->https://shop.goldelico.com/wiki.php?page=GTA04%20Complete] units. Or you take a [Case Kit->https://shop.goldelico.com/wiki.php?page=GTA04%3ACase%20Kit&referer=] plus a 3D printed or 3D cut [case->#case].
+
+.p Key features are:
+* ARM Cortex A8 processor with 1000 MHz and 512 MB RAM
+* UMTS 3.75G (14 MBit/s max.)
+* Integrated sensors (Barometer, Gyroscope, Accelerometer, Compass)
+* optional: Camera
+* USB OTG 2.0
+* fits into existing Neo Freerunner case
+
+.img= case_3Dprint.png 3D printing process -> #case
