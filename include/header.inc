@@ -2,9 +2,8 @@
 .a news: http://projects.goldelico.com/p/gta04-main/page/News
 .a web: http://openphoenux.org
 .a rss: http://blog.slyon.de/feed/
-.a impressum: #impressum
 <div id="nav" class="wide bar">
-.p#links  _rss_ - _news_ - _mailing list_ - _web_ - _impressum_
+.p#links  _rss_ - _news_ - _mailing list_ - _web_
 .p#date <!-- hhmts start -->Last modified: $date <!-- hhmts end -->
  <address>openphoenux.org</address>
 </div>
@@ -15,7 +14,6 @@
   <h1>Open Phoenux <span>[o.pen fi.nuks]</span></h1>
   <h2>Free your phone by running Linux!</h2>
  </div>
-<!-- <a href="."><img src="images/openphoenux.png" width="100" height="100" alt="phoenux logo" /></a>-->
  <a href="."><img src="images/openphoenux_logo.png" width="100" alt="openphoenux.org" /></a>
  <div class="right">
   <p>Are you ready for the next generation mobile phone?</p>

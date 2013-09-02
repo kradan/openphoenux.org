@@ -1,4 +1,4 @@
-.h2 Who are we?
+.h2 Who we are
 
 .p This is an interesting question as there is a heterogenous global community fascinated by the idea of open mobile phones and open hardware in general.
 .p Many of "us" care a lot about private communcation -  in case you are working for some intelligence agency better bookmark this page.
@@ -20,3 +20,8 @@
 .h2 And why the name 'phoenux'?
 
 .p Openmoko declared the open mobile communication project dead but phoenux will arise from the ashes to the heaven of Linux ..
+
+.h2 Who is responsible for this ugly peace of page?
+
+.p This page is developed and designed by [kardan->mailto:kardan NOSPAM riseup.net?subject=openphoenux.org].
+.p Find the code at [github->https://github.com/kradan/openphoenux.org]. Please improve the design!

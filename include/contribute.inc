@@ -5,4 +5,4 @@
 .li Compress this page and available information to a leaflet and spread it (very important)
 .li vote for improvements an this and our [sister page->http://slyon.de/gta04/index.old.php]
 .li Tell all your friends about this project and other [open hardware->https://we.riseup.net/opensourcehardware] initiatives (for example this [open geiger counter->http://www.indiegogo.com/project/preview/880f9dba])
-.p To improve this page check out the code at [github.org->]
+.p To improve this page check out the code at [github->https://github.com/kradan/openphoenux.org].
