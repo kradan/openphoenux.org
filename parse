@@ -171,6 +171,6 @@ HTML
  debug "\n$source * EOF\n";
  close INC;
  close HTML;
-  print "Done.\n" unless ($debug);
+  print "Creation finished.\n" unless ($debug);
   1;
 }
